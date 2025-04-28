@@ -19,7 +19,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Add("Content-Type", "text/html")
-	http.ServeFile(w, r, "../index.html")
+	http.ServeFile(w, r, "./index.html")
 }
 
 // UploadHandler обрабатывает форму и загружаемый файл
