@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Yandex-Practicum/go1fl-sprint6-final/internal/handlers"
+	handlers "github.com/Yandex-Practicum/go1fl-sprint6-final/internal/handlers"
 )
 
 // Server представляет собой структуру HTTP-сервера
@@ -34,9 +34,9 @@ func New(logger *log.Logger) (*Server, error) {
 
 // RegisterHandlers регистрирует хэндлеры в маршрутизаторе
 func (s *Server) RegisterHandlers() {
-	mux := s.Server.Handler.(*http.ServeMux) // достаем наш роутер
+	mux := s.Server.Handler.(*http.ServeMux)
 
-	// Назначение хэндлеров через роутер
-	mux.HandleFunc("/", handlers.IndexHandler())
+	// Регистрируем хэндлер только для точного пути '/'
+	mux.HandleFunc("/", handlers.IndexHandler)
 	mux.HandleFunc("/upload", handlers.UploadHandler(s.Logger))
 }
